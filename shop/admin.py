@@ -6,11 +6,14 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('id','name','price','user','category')
     list_filter = ('category',)
 
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id','name','email','product','get_price')
-
+    list_display = ('id','customer','email','product','price','category')
     @admin.display
-    def get_price(self,obj):
+    def price(self,obj):
         return obj.product.price
+    @admin.display
+    def category(self,obj):
+        return obj.product.category 
 
 admin.site.register(Category)
