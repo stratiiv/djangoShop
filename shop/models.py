@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     def __str__(self) -> str:
-        return self.name
+        return f'{self.name}({self.category.name})'
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6,decimal_places=2)
     user = models.ForeignKey(User,on_delete=models.CASCADE)

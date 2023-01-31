@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.views import generic
 from .models import Product
-from .forms import ProductForm
+from .forms import OrderForm
 # Create your views here.
 
 class ProductFilter(django_filters.FilterSet):
@@ -27,11 +27,11 @@ class ProductDetailView(generic.DetailView):
 
 def create_order(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = OrderForm(request.POST)
         if form.is_valid():
-            order=form.save()
-            return redirect('create-order')
+            form.save()
+        return redirect('create-order')
     else:
-        form = ProductForm()
+        form = OrderForm()
         return render(request,'shop/create_order.html',{'form':form})
 

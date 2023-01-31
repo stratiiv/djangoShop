@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
   <body>
-  
   <section class="section">
     <div class="container">
         {% block form %}
       <form method="get" action="{% url 'filter-products' %}">
         {{filter.form.as_p}}
-        <input type="submit">
+        <button type="submit">Filter </button>
       </form>
         {% endblock %}
         {% block table %}
