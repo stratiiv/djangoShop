@@ -1,6 +1,16 @@
 {% extends 'shop/product_list.html' %}
 
-{% block tbody %}
+{% block table %}
+
+<table class="table">
+<thead>
+    <tr>
+        <th>№</th>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+</thead>
 <tbody>
     {% for product in filter.qs %}
     <tr>
@@ -11,4 +21,5 @@
     </tr>
     {% endfor %}
 </tbody>
+</table>
 {% endblock %}

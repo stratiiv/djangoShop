@@ -1,9 +1,11 @@
+{% load staticfiles %}
 {% extends 'shop/create_order.html' %}
 
-{% block form %}
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit" class="button"> Create order </button>
 </form>
-{% endblock}
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
