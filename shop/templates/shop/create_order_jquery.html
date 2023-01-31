@@ -1,11 +1,12 @@
-{% load staticfiles %}
-{% extends 'shop/create_order.html' %}
+{% extends 'base.html' %}
+{% load static %}
+{% load rest_framework %}
 
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    {% render_form serializer %}
     <button type="submit" class="button"> Create order </button>
 </form>
 {% endblock %}
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="{% static 'shop/createOrder.js' %}"></script>   

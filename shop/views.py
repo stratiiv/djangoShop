@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .serializers import OrderSerializer
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED,HTTP_400_BAD_REQUEST
+from rest_framework.renderers import TemplateHTMLRenderer
 # Create your views here.
 
 class ProductFilter(django_filters.FilterSet):
@@ -39,7 +40,12 @@ def create_order(request):
         form = OrderForm()
         return render(request,'shop/create_order.html',{'form':form})
 
-class CreateOrder(APIView):
+class CreateOrderJQ(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'shop/create_order_jquery.html'
+    def get(self,request):
+        serializer = OrderSerializer()
+        return Response({'serializer':serializer})
     def post(self,request):
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():

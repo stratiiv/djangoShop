@@ -7,7 +7,7 @@ urlpatterns = [
     path('products/filter/',views.get_filtered_product_list,name='filter-products'),
     path('products/<int:pk>/',views.ProductDetailView.as_view(),name = 'product-detail'),
     path('create-order/',views.create_order,name = 'create-order'),
-    path('api/v1/create-order/',views.CreateOrder.as_view())
+    path('api/v1/create-order/',views.CreateOrderJQ.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
