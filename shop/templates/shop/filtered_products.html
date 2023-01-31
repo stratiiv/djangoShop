@@ -1,0 +1,14 @@
+{% extends 'shop/product_list.html' %}
+
+{% block tbody %}
+<tbody>
+    {% for product in filter.qs %}
+    <tr>
+        <th>{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.price}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+{% endblock %}

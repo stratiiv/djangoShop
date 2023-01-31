@@ -9,9 +9,10 @@
   <body>
   <section class="section">
     <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
+      <form method="get" action="{% url 'filter-products' %}">
+        {{filter.form.as_p}}
+        <input type="submit">
+      </form>
       <table class="table">
         <thead>
             <tr>
@@ -21,16 +22,18 @@
                 <th>Price</th>
             </tr>
         </thead>
+        {% block tbody %}
         <tbody>
+            {% for product in product_list %}
             <tr>
-                {% for product in product_list %}
                 <th>{{product.id}}</th>
                 <td>{{product.name}}</td>
                 <td>{{product.category}}</td>
                 <td>{{product.price}}</td>
-                {% endfor %}
             </tr>
+            {% endfor %}
         </tbody>
+        {% endblock %}
       </table>
       <p class="subtitle">
         My first website with <strong>Bulma</strong>!
