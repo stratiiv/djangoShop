@@ -1,7 +1,9 @@
 import django_filters
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse
+from django.views import generic
 from .models import Product
+from .forms import ProductForm
 # Create your views here.
 
 class ProductFilter(django_filters.FilterSet):
@@ -18,3 +20,18 @@ def get_product_list(request):
 def get_filtered_product_list(request):
     f = ProductFilter(request.GET,queryset=Product.objects.all())
     return render(request,'shop/filtered_products.html',{'filter':f})
+
+class ProductDetailView(generic.DetailView):
+    model = Product
+    context_object_name = 'product'
+
+def create_order(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            order=form.save()
+            return redirect('create-order')
+    else:
+        form = ProductForm()
+        return render(request,'shop/create_order.html',{'form':form})
+

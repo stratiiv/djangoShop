@@ -22,4 +22,5 @@ class Order(models.Model):
     customer = models.CharField(max_length=50)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
     
