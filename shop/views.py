@@ -1,13 +1,12 @@
 import django_filters
 from django.shortcuts import render,redirect
-from django.urls import reverse
 from django.views import generic
 from .models import Product
 from .forms import OrderForm
 from rest_framework.views import APIView
 from .serializers import OrderSerializer
 from rest_framework.response import Response
-from rest_framework.status import HTTP_201_CREATED,HTTP_400_BAD_REQUEST,HTTP_200_OK
+from rest_framework.status import HTTP_201_CREATED,HTTP_400_BAD_REQUEST
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.utils.html import escape
 # Create your views here.
