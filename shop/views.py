@@ -7,8 +7,9 @@ from .forms import OrderForm
 from rest_framework.views import APIView
 from .serializers import OrderSerializer
 from rest_framework.response import Response
-from rest_framework.status import HTTP_201_CREATED,HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_201_CREATED,HTTP_400_BAD_REQUEST,HTTP_200_OK
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.utils.html import escape
 # Create your views here.
 
 class ProductFilter(django_filters.FilterSet):
@@ -47,9 +48,13 @@ class CreateOrderJQ(APIView):
         serializer = OrderSerializer()
         return Response({'serializer':serializer})
     def post(self,request):
+        print('Request data is',request.data)
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
+            print("cleaned data is",serializer.validated_data)
             serializer.save()
-            return Response(serializer.data,HTTP_201_CREATED)
-        return Response(serializer.errors,HTTP_400_BAD_REQUEST)
+            return Response({'serializer':serializer},status=HTTP_201_CREATED)
+        return Response({'serializer':serializer},status = HTTP_400_BAD_REQUEST)
+
+       
 
